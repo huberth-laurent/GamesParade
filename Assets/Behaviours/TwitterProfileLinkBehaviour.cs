@@ -13,16 +13,16 @@ namespace Assets.Behaviours
     {
         public User User { get; set; }
 
-        private AppsRootBehaviour _appsRoot;
+        private Lazy<AppsRootBehaviour> _appsRoot;
 
-        private void Start()
+        public TwitterProfileLinkBehaviour()
         {
-            _appsRoot = GetComponentInParent<AppsRootBehaviour>();
+            _appsRoot = new Lazy<AppsRootBehaviour>(() => GetComponentInParent<AppsRootBehaviour>());
         }
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            _appsRoot.DisplayTwitterProfile(User);
+            _appsRoot.Value.DisplayTwitterProfile(User);
         }
     }
 }

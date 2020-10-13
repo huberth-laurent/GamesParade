@@ -11,11 +11,27 @@ namespace Assets.Behaviours
 {
     class FeedBehaviour : MonoBehaviour
     {
-        private Transform _tweetsRoot;
+        private Lazy<Transform> _tweetsRoot;
+        private HashSet<Tweet> _tweets = new HashSet<Tweet>();
+
+        public FeedBehaviour()
+        {
+            _tweetsRoot = new Lazy<Transform>(() => transform.Find("Tweets"));
+        }
 
         private void Start()
         {
-            _tweetsRoot = transform.Find("Tweets");
+            // Get rid of the example tweets
+            foreach (var child in _tweetsRoot.Value.Children())
+            {
+                Destroy(child.gameObject);
+            }
+            UpdateTweets();
+        }
+
+        private void Update()
+        {
+            // Do this for now
             UpdateTweets();
         }
 
@@ -31,14 +47,12 @@ namespace Assets.Behaviours
 
         private void UpdateTweets()
         {
-            foreach (var child in _tweetsRoot.Children())
+            foreach (var tweet in Database.GetAllSentTweets().Where(x => !_tweets.Contains(x)).OrderBy(x => x.SentAtTime))
             {
-                Destroy(child.gameObject);
-            }
-
-            foreach (var tweet in Database.GetAllSentTweets())
-            {
-                Instantiate(CommonPrefabs.Instance.Tweet, _tweetsRoot).GetComponent<TweetBehaviour>().Tweet = tweet;
+                var ui = Instantiate(CommonPrefabs.Instance.Tweet, _tweetsRoot.Value);
+                ui.GetComponent<TweetBehaviour>().Tweet = tweet;
+                ui.transform.SetSiblingIndex(0);
+                _tweets.Add(tweet);
             }
         }
     }

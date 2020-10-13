@@ -24,50 +24,41 @@ namespace Assets.Behaviours
         private Lazy<Image> _profileImage;
         private Lazy<TMP_Text> _nameText;
         private User _user;
+        private HashSet<Tweet> _tweets = new HashSet<Tweet>();
 
         public void SetUser(User user)
         {
             _user = user;
-            UpdateData();
-        }
-
-        /*private void Start()
-        {
-            _tweetsRoot = transform.Find("Tweets");
-            if (enabled)
-            {
-                UpdateTweets();
-            }
-        }*/
-
-        private void OnEnable()
-        {
-            /*if(_tweetsRoot == null)
-            {
-                return;
-            }*/
-
-            UpdateData();
-        }
-
-        private void UpdateData()
-        {
+            _tweets = new HashSet<Tweet>();
             foreach (var child in _tweetsRoot.Value.Children())
             {
                 Destroy(child.gameObject);
             }
 
+            _nameText.Value.text = _user.username;
+            _profileImage.Value.sprite = _user.ProfileImage;
+            UpdateData();
+        }
+
+        private void Update()
+        {
+            // Do this for now
+            UpdateData();
+        }
+
+        private void UpdateData()
+        {
             if (_user == null)
             {
                 return;
             }
 
-            _nameText.Value.text = _user.username;
-            _profileImage.Value.sprite = _user.ProfileImage;
-
-            foreach (var tweet in Database.GetAllUserSentTweets(_user))
+            foreach (var tweet in Database.GetAllUserSentTweets(_user).Where(x => !_tweets.Contains(x)).OrderBy(x => x.SentAtTime))
             {
-                Instantiate(CommonPrefabs.Instance.Tweet, _tweetsRoot.Value).GetComponent<TweetBehaviour>().Tweet = tweet;
+                var ui = Instantiate(CommonPrefabs.Instance.Tweet, _tweetsRoot.Value);
+                ui.GetComponent<TweetBehaviour>().Tweet = tweet;
+                ui.transform.SetSiblingIndex(0);
+                _tweets.Add(tweet);
             }
         }
     }
