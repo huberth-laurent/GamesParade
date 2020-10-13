@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Assets.Behaviours
+namespace Assets.Data
 {
-    class Class1
+    [Serializable]
+    class Tweets
     {
+        public List<Tweet> tweets;
     }
 }
