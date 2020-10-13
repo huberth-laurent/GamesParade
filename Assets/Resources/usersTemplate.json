@@ -1,0 +1,9 @@
+{
+	"users":
+	[
+		{
+			"id": ""this is an id used to identify the user. You can use any alphanumeric text. It must be unique",
+			"username": "the displayed username for this user"
+		}
+	]
+}
