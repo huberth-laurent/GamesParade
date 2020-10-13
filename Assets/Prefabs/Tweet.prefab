@@ -469,6 +469,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8393618077654993600}
   - component: {fileID: 1031148534789892404}
+  - component: {fileID: 693107277405841653}
   m_Layer: 5
   m_Name: ProfileRow
   m_TagString: Untagged
@@ -522,3 +523,15 @@ MonoBehaviour:
   m_ChildControlHeight: 1
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
+--- !u!114 &693107277405841653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9193545648221148793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c4fe1db4da64e34da236078760ba17b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

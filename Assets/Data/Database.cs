@@ -18,6 +18,8 @@ namespace Assets.Data
         }
 
         public static IEnumerable<Tweet> GetAllSentTweets() => _tweets.ToList();
+        public static IEnumerable<Tweet> GetAllUserSentTweets(User user) => GetAllUserSentTweets(user.id);
+        public static IEnumerable<Tweet> GetAllUserSentTweets(string userId) => _tweets.Where(x => x.userId == userId).ToList();
 
         public static IReadOnlyDictionary<string, User> UsersById { get; private set; }
 
