@@ -21,10 +21,12 @@ namespace Assets.Data
         [NonSerialized]
         private readonly Lazy<User> _user;
 
+#pragma warning disable 0649
         public string id;
         public string userId;
         public string message;
         public string requires;
+#pragma warning restore 0649
 
         public float? SentAtTime { get; set; } = null;
 

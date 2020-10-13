@@ -9,6 +9,8 @@ namespace Assets.Data
     [Serializable]
     class Users
     {
+#pragma warning disable 0649
         public List<User> users;
+#pragma warning restore 0649
     }
 }

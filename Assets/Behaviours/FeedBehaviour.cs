@@ -35,16 +35,6 @@ namespace Assets.Behaviours
             UpdateTweets();
         }
 
-        private void OnEnable()
-        {
-            if(_tweetsRoot == null)
-            {
-                return;
-            }
-
-            UpdateTweets();
-        }
-
         private void UpdateTweets()
         {
             foreach (var tweet in Database.GetAllSentTweets().Where(x => !_tweets.Contains(x)).OrderBy(x => x.SentAtTime))

@@ -19,7 +19,9 @@ namespace Assets.Data
         [NonSerialized]
         private Lazy<Sprite> _profileImage;
 
+#pragma warning disable 0649
         public string id;
         public string username;
+#pragma warning restore 0649
     }
 }
