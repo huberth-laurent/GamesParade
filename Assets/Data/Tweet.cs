@@ -26,6 +26,10 @@ namespace Assets.Data
         public string replyTo;
 #pragma warning restore 0649
 
+        public int Likes { get; set; } = 0;
+
+        public bool PlayerLikes { get; set; }
+
         public User User => _user.Value;
         [NonSerialized]
         private readonly Lazy<User> _user;

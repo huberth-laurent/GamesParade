@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Assets.Data
 {
@@ -26,6 +27,11 @@ namespace Assets.Data
 
             God = UsersById["god"];
             Death = UsersById["death"];
+
+            foreach(var tweet in _tweetsById.Values)
+            {
+                tweet.Likes = Random.Range(1, 10);
+            }
         }
 
         private void Update()

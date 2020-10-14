@@ -37,7 +37,7 @@ namespace Assets.Behaviours
                 Destroy(child.gameObject);
             }
 
-            _nameText.Value.text = _user.username;
+            _nameText.Value.text = _user.fullName + $" ({user.username})";
             _bioText.Value.text = _user.bio;
             _profileImage.Value.sprite = _user.ProfileImage;
             UpdateData();

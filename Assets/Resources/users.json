@@ -3,22 +3,26 @@
 	[
 		{
 			"id": "death",
-			"username": "death",
+			"username": "@death",
+			"fullName": "Death, Destroyer of Worlds",
 			"bio": "Memento Mori!"
 		},
 		{
 			"id": "god",
 			"username": "God",
+			"fullName": "?",
 			"bio": "I am the alpha & the omega #almighty"
 		},
 		{
 			"id": "dave",
-			"username": "dave",
+			"username": "@dave",
+			"fullName": "David Tweeterman",
 			"bio": "I do anything people on the internet tell me to #crowdsourcing"
 		},
 		{
 			"id": "anne",
-			"username": "anne",
+			"username": "@anne",
+			"fullName": "Anne",
 			"bio": "I'm a test user!"
 		}
 	]
