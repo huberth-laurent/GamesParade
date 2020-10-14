@@ -12,6 +12,8 @@ namespace Assets.Data
     class Database : MonoBehaviour
     {
         private const float TweetDelaySeconds = 5;
+        private const float LikeUpdateIntervalSeconds = 5;
+        private float LastLikesUpdateAt = -1;
 
         private void Start()
         {
@@ -37,6 +39,11 @@ namespace Assets.Data
         private void Update()
         {
             UpdateSentSendables();
+            if(Time.time - LastLikesUpdateAt >= LikeUpdateIntervalSeconds)
+            {
+                LastLikesUpdateAt = Time.time;
+                AddRandomLikes();
+            }
         }
 
         public static IReadOnlyList<Tweet> GetPossibleReplies(Tweet tweet) 
@@ -99,6 +106,17 @@ namespace Assets.Data
                         sendable.SentAtTime = Time.time + TweetDelaySeconds;
                         changed = true;
                     }
+                }
+            }
+        }
+
+        private void AddRandomLikes()
+        {
+            foreach(var tweet in GetAllSentTweets())
+            {
+                if(Random.value <= 0.1)
+                {
+                    tweet.Likes += Random.Range(1, 3);
                 }
             }
         }
