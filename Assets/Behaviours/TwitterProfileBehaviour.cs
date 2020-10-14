@@ -15,7 +15,7 @@ namespace Assets.Behaviours
     {
         public TwitterProfileBehaviour()
         {
-            _tweetsRoot = new Lazy<Transform>(() => transform.Find("TweetList"));
+            _tweetsRoot = new Lazy<Transform>(() => transform.Find("TweetList/Viewport/Content"));
             _profileImage = new Lazy<Image>(() => transform.Find("ProfileImage").GetComponent<Image>());
             _nameText = new Lazy<TMP_Text>(() => transform.Find("ProfileName").GetComponent<TMP_Text>());
             _bioText = new Lazy<TMP_Text>(() => transform.Find("Bio").GetComponent<TMP_Text>());
