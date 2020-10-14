@@ -22,6 +22,7 @@ namespace Assets.Data
 #pragma warning disable 0649
         public string id;
         public string username;
+        public string bio;
 #pragma warning restore 0649
     }
 }

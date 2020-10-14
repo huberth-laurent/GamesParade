@@ -3,11 +3,13 @@
 	[
 		{
 			"id": "dave",
-			"username": "dave"
+			"username": "dave",
+			"bio": "I do anything people on the internet tell me to. #crowdsourcing"
 		},
 		{
 			"id": "anne",
-			"username": "anne"
+			"username": "anne",
+			"bio": "I'm a test user!"
 		}
 	]
 }

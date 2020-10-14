@@ -16,7 +16,7 @@ namespace Assets.Behaviours
 
         public FeedBehaviour()
         {
-            _tweetsRoot = new Lazy<Transform>(() => transform.Find("Tweets"));
+            _tweetsRoot = new Lazy<Transform>(() => transform.Find("TweetList"));
         }
 
         private void Start()

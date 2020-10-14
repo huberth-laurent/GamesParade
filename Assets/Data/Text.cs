@@ -17,11 +17,13 @@ namespace Assets.Data
 
         public bool isOutgoing = false;
 
+#pragma warning disable 0649
         public string id;
 
         public string requires;
 
         public string message;
+#pragma warning restore 0649
 
         public float? SentAtTime { get; set; } = null;
 

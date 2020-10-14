@@ -15,14 +15,16 @@ namespace Assets.Behaviours
     {
         public TwitterProfileBehaviour()
         {
-            _tweetsRoot = new Lazy<Transform>(() => transform.Find("Tweets"));
+            _tweetsRoot = new Lazy<Transform>(() => transform.Find("TweetList"));
             _profileImage = new Lazy<Image>(() => transform.Find("ProfileImage").GetComponent<Image>());
             _nameText = new Lazy<TMP_Text>(() => transform.Find("ProfileName").GetComponent<TMP_Text>());
+            _bioText = new Lazy<TMP_Text>(() => transform.Find("Bio").GetComponent<TMP_Text>());
         }
 
         private Lazy<Transform> _tweetsRoot;
         private Lazy<Image> _profileImage;
         private Lazy<TMP_Text> _nameText;
+        private Lazy<TMP_Text> _bioText;
         private User _user;
         private HashSet<Tweet> _tweets = new HashSet<Tweet>();
 
@@ -36,6 +38,7 @@ namespace Assets.Behaviours
             }
 
             _nameText.Value.text = _user.username;
+            _bioText.Value.text = _user.bio;
             _profileImage.Value.sprite = _user.ProfileImage;
             UpdateData();
         }
