@@ -4,7 +4,7 @@
 		{
 			"id": "this is an id used to identify the tweet. You can use any alphanumeric text. It must be unique, and without any spaces",
 			"userId": "id of the user the tweet is from",
-			"replyTo": "if this is a reply from death, give the id of the tweet it's replying to. Otherwise exclude this field",
+			"replyTo": "id of the tweet this is a reply to. If the userId is 'death', this is a reply option for the player",
 			"requires": "comma separated ids of tweets/player responses/other stuff that must be visible before this tweet can become visible",
 			"message": "The tweet content goes here"
 		}
