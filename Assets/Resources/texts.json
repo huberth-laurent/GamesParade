@@ -1,0 +1,21 @@
+{
+	"texts":
+	[
+		{
+			"id": "1",
+			"requires": "",
+			"message": "It's me, God. My ineffable plan requires that Dave Tweetsman die today."
+		},
+		{
+			"id": "2",
+			"isOutgoing": "true",
+			"requires": "1",
+			"message": "OK"
+		},
+		{
+			"id": "3",
+			"requires": "2, dave2",
+			"message": "P.S. blah blah blah"
+		}	
+	]
+}

@@ -23,6 +23,8 @@ namespace Assets.Behaviours
 #pragma warning disable 0649
 
         public GameObject Tweet;
+        public GameObject ReceivedText;
+        public GameObject SentText;
 
 #pragma warning restore 0649
     }

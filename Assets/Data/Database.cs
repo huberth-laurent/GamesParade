@@ -14,17 +14,38 @@ namespace Assets.Data
 
         private void Start()
         {
-            _tweetsById = JsonUtility.FromJson<Tweets>(Resources.Load<TextAsset>("tweets").text).tweets.ToDictionary(x => x.id);
-
             _usersById = JsonUtility.FromJson<Users>(Resources.Load<TextAsset>("users").text).users.ToDictionary(x => x.id);
+            _tweetsById = JsonUtility.FromJson<Tweets>(Resources.Load<TextAsset>("tweets").text).tweets.ToDictionary(x => x.id);
+            _textsById = JsonUtility.FromJson<Texts>(Resources.Load<TextAsset>("texts").text).texts.ToDictionary(x => x.id);
+            _sendablesById = _tweetsById.Values.OfType<ISendable>().Concat(_textsById.Values.OfType<ISendable>()).ToDictionary(x => x.Id);
 
-            TweetsById = new ReadOnlyDictionary<string, Tweet>(_tweetsById);
             UsersById = new ReadOnlyDictionary<string, User>(_usersById);
+            SendablesById = new ReadOnlyDictionary<string, ISendable>(_sendablesById);
+            TweetsById = new ReadOnlyDictionary<string, Tweet>(_tweetsById);
+            TextsById = new ReadOnlyDictionary<string, Text>(_textsById);
         }
 
         private void Update()
         {
-            UpdateSentTweets();
+            UpdateSentSendables();
+        }
+
+        public static IReadOnlyList<ISendable> GetRequiredSendables(ISendable sendable)
+        {
+            var list = new List<ISendable>();
+
+            if (!string.IsNullOrWhiteSpace(sendable.Requires))
+            {
+                foreach (var requireId in string.Concat(sendable.Requires.Where(x => !char.IsWhiteSpace(x))).Split(','))
+                {
+                    if (!SendablesById.TryGetValue(requireId, out var required))
+                    {
+                        Debug.LogError($"The tweet with id {sendable.Id} requires the tweet with id {requireId}, but no such tweet exists");
+                    }
+                    list.Add(required);
+                }
+            }
+            return new ReadOnlyCollection<ISendable>(list);
         }
 
         public static IEnumerable<Tweet> GetAllSentTweets() => _tweetsById.Values
@@ -36,23 +57,31 @@ namespace Assets.Data
             .Where(x => x.userId == userId)
             .ToList();
 
+        public static IEnumerable<Text> GetAllSentTexts() => _textsById.Values
+            .Where(x => x.IsSent)
+            .ToList();
+
         public static IReadOnlyDictionary<string, User> UsersById { get; private set; }
+        public static IReadOnlyDictionary<string, ISendable> SendablesById { get; private set; }
         public static IReadOnlyDictionary<string, Tweet> TweetsById { get; private set; }
+        public static IReadOnlyDictionary<string, Text> TextsById { get; private set; }
 
-        private static IDictionary<string, Tweet> _tweetsById;
         private static IDictionary<string, User> _usersById;
+        private static IDictionary<string, ISendable> _sendablesById;
+        private static IDictionary<string, Tweet> _tweetsById;
+        private static IDictionary<string, Text> _textsById;
 
-        private void UpdateSentTweets()
+        private void UpdateSentSendables()
         {
             bool changed = true;
             while (changed)
             {
                 changed = false;
-                foreach (var tweet in TweetsById.Values.Where(x => x.SentAtTime == null))
+                foreach (var sendable in SendablesById.Values.Where(x => x.SentAtTime == null))
                 {
-                    if (tweet.RequiresTweets.All(x => x.IsSent))
+                    if (sendable.RequiresSendables.All(x => x.IsSent))
                     {
-                        tweet.SentAtTime = Time.time + TweetDelaySeconds;
+                        sendable.SentAtTime = Time.time + TweetDelaySeconds;
                         changed = true;
                     }
                 }
