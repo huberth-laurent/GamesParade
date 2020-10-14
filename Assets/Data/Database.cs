@@ -12,6 +12,7 @@ namespace Assets.Data
     class Database : MonoBehaviour
     {
         private const float TweetDelaySeconds = 5;
+        private const float MessageDelaySeconds = 20;
         private const float LikeUpdateIntervalSeconds = 5;
         private float LastLikesUpdateAt = -1;
 
@@ -103,7 +104,7 @@ namespace Assets.Data
                 {
                     if (sendable.RequiresSendables.All(x => x.IsSent))
                     {
-                        sendable.SentAtTime = Time.time + TweetDelaySeconds;
+                        sendable.SentAtTime = Time.time + (sendable is Text ? MessageDelaySeconds : TweetDelaySeconds);
                         changed = true;
                     }
                 }
