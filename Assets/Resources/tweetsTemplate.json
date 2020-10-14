@@ -3,7 +3,8 @@
 	[
 		{
 			"id": "this is an id used to identify the tweet. You can use any alphanumeric text. It must be unique, and without any spaces",
-			"userId": "once we have users in json, this will be the id of the user the tweet is from",
+			"userId": "id of the user the tweet is from",
+			"replyTo": "if this is a reply from death, give the id of the tweet it's replying to. Otherwise exclude this field",
 			"requires": "comma separated ids of tweets/player responses/other stuff that must be visible before this tweet can become visible",
 			"message": "The tweet content goes here"
 		}

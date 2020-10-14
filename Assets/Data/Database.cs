@@ -33,6 +33,9 @@ namespace Assets.Data
             UpdateSentSendables();
         }
 
+        public static IReadOnlyList<Tweet> GetPossibleReplies(Tweet tweet) 
+            => new ReadOnlyCollection<Tweet>(TweetsById.Values.Where(x => x.replyTo == tweet.id).ToList());
+
         public static IReadOnlyList<ISendable> GetRequiredSendables(ISendable sendable)
         {
             var list = new List<ISendable>();

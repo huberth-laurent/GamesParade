@@ -15,6 +15,7 @@ namespace Assets.Data
         {
             _user = new Lazy<User>(() => Database.UsersById[userId]);
             _requiresSendables = new Lazy<IReadOnlyList<ISendable>>(() => Database.GetRequiredSendables(this));
+            _possibleReplies = new Lazy<IReadOnlyList<Tweet>>(() => Database.GetPossibleReplies(this));
         }
 
 #pragma warning disable 0649
@@ -36,6 +37,10 @@ namespace Assets.Data
         public float? SentAtTime { get; set; } = null;
 
         public bool IsSent => SentAtTime <= Time.time;
+
+        public IReadOnlyList<Tweet> PossibleReplies => _possibleReplies.Value;
+        [NonSerialized]
+        private readonly Lazy<IReadOnlyList<Tweet>> _possibleReplies;
 
         public IReadOnlyList<ISendable> RequiresSendables => _requiresSendables.Value;
         [NonSerialized]

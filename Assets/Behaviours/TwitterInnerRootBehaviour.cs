@@ -13,11 +13,13 @@ namespace Assets.Behaviours
         public TwitterInnerRootBehaviour()
         {
             _feedRoot = new Lazy<GameObject>(() => transform.Find("Feed").gameObject);
-            _twitterProfileRoot = new Lazy<TwitterProfileBehaviour>(() => transform.Find("Profile").GetComponent<TwitterProfileBehaviour>());
+            _profileRoot = new Lazy<TwitterProfileBehaviour>(() => transform.Find("Profile").GetComponent<TwitterProfileBehaviour>());
+            _replyRoot = new Lazy<TwitterReplyScreenBehaviour>(() => transform.Find("Reply").GetComponent<TwitterReplyScreenBehaviour>());
         }
 
         private Lazy<GameObject> _feedRoot;
-        private Lazy<TwitterProfileBehaviour> _twitterProfileRoot;
+        private Lazy<TwitterProfileBehaviour> _profileRoot;
+        private Lazy<TwitterReplyScreenBehaviour> _replyRoot;
 
         /*protected override void Start()
         {
@@ -32,8 +34,14 @@ namespace Assets.Behaviours
 
         public void DisplayProfile(User user)
         {
-            _twitterProfileRoot.Value.SetUser(user);
-            SetActiveChild(_twitterProfileRoot.Value.gameObject);
+            _profileRoot.Value.SetUser(user);
+            SetActiveChild(_profileRoot.Value.gameObject);
+        }
+
+        public void DisplayReplyScreen(Tweet tweet)
+        {
+            _replyRoot.Value.SetTweet(tweet);
+            SetActiveChild(_replyRoot.Value.gameObject);
         }
     }
 }

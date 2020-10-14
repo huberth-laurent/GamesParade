@@ -14,6 +14,12 @@
 			"message": "Thinking about doing something dumb. Any suggestions?"
 		},
 		{
+			"id": "dave3",
+			"userId": "dave",
+			"requires": "reply1",
+			"message": "Good idea!"
+		},
+		{
 			"id": "reply1",
 			"userId": "death",
 			"replyTo": "dave2",
