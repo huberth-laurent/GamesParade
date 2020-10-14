@@ -1,0 +1,11 @@
+{
+	"texts":
+	[
+		{
+			"id": "this is an id used to identify the text message. You can use any alphanumeric text. It must be unique, and without any spaces",
+			"isOutgoing": "true", <- If this line is present, the text will appear as sent from death to god, otherwise from god to death
+			"requires": "comma separated ids of tweets/messages that must have been sent before this text is sent",
+			"message": "Message text goes here."
+		}
+	]
+}
