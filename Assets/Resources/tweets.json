@@ -14,6 +14,24 @@
 			"message": "Thinking about doing something dumb. Any suggestions?"
 		},
 		{
+			"id": "reply1",
+			"userId": "death",
+			"replyTo": "dave2",
+			"message": "Maybe you should go skydiving?"
+		},
+		{
+			"id": "reply2",
+			"userId": "death",
+			"replyTo": "dave2",
+			"message": "See how long you can hold your breath?"
+		},
+		{
+			"id": "reply3",
+			"userId": "death",
+			"replyTo": "dave2",
+			"message": "Just sit quietly inside with the door locked #yolo"
+		},
+		{
 			"id": "anne1",
 			"userId": "anne",
 			"message": "Anne here"

@@ -2,9 +2,19 @@
 	"users":
 	[
 		{
+			"id": "death",
+			"username": "death",
+			"bio": "Memento Mori!"
+		},
+		{
+			"id": "god",
+			"username": "God",
+			"bio": "I am the alpha & the omega #almighty"
+		},
+		{
 			"id": "dave",
 			"username": "dave",
-			"bio": "I do anything people on the internet tell me to. #crowdsourcing"
+			"bio": "I do anything people on the internet tell me to #crowdsourcing"
 		},
 		{
 			"id": "anne",

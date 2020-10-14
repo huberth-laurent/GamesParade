@@ -8,6 +8,8 @@ namespace Assets.Data
 {
     interface ISendable
     {
+        User User { get; }
+
         string Id { get; }
 
         float? SentAtTime { get; set; }

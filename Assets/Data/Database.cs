@@ -23,6 +23,9 @@ namespace Assets.Data
             SendablesById = new ReadOnlyDictionary<string, ISendable>(_sendablesById);
             TweetsById = new ReadOnlyDictionary<string, Tweet>(_tweetsById);
             TextsById = new ReadOnlyDictionary<string, Text>(_textsById);
+
+            God = UsersById["god"];
+            Death = UsersById["death"];
         }
 
         private void Update()
@@ -47,6 +50,9 @@ namespace Assets.Data
             }
             return new ReadOnlyCollection<ISendable>(list);
         }
+
+        public static User God;
+        public static User Death;
 
         public static IEnumerable<Tweet> GetAllSentTweets() => _tweetsById.Values
             .Where(x => x.IsSent)
@@ -77,7 +83,7 @@ namespace Assets.Data
             while (changed)
             {
                 changed = false;
-                foreach (var sendable in SendablesById.Values.Where(x => x.SentAtTime == null))
+                foreach (var sendable in SendablesById.Values.Where(x => x.SentAtTime == null && (x.User != Death || x is Text)))
                 {
                     if (sendable.RequiresSendables.All(x => x.IsSent))
                     {

@@ -17,16 +17,17 @@ namespace Assets.Data
             _requiresSendables = new Lazy<IReadOnlyList<ISendable>>(() => Database.GetRequiredSendables(this));
         }
 
-        public User User => _user.Value;
-        [NonSerialized]
-        private readonly Lazy<User> _user;
-
 #pragma warning disable 0649
         public string id;
         public string userId;
         public string message;
         public string requires;
+        public string replyTo;
 #pragma warning restore 0649
+
+        public User User => _user.Value;
+        [NonSerialized]
+        private readonly Lazy<User> _user;
 
         string ISendable.Id => id;
 

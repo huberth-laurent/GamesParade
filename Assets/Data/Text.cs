@@ -15,8 +15,6 @@ namespace Assets.Data
             _requiresSendables = new Lazy<IReadOnlyList<ISendable>>(() => Database.GetRequiredSendables(this));
         }
 
-        public bool isOutgoing = false;
-
 #pragma warning disable 0649
         public string id;
 
@@ -24,6 +22,12 @@ namespace Assets.Data
 
         public string message;
 #pragma warning restore 0649
+
+        public User User => isOutgoing ? Database.Death : Database.God;
+        [NonSerialized]
+        private readonly Lazy<User> _user;
+
+        public bool isOutgoing = false;
 
         public float? SentAtTime { get; set; } = null;
 
